@@ -24,7 +24,7 @@ include 'header.php';
 
 //ID Check
 if($file_get==NULL){
-	errorbox('Invalid file.');
+	errorbox('无效的文件');
 	include 'footer.php';
 	exit(0);
 }
@@ -42,12 +42,12 @@ if($user_type!=-1&&!empty($_POST["comment"])){
 	
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to post comment.');
+		errorbox('无法发表评论。');
 		include 'footer.php';
 		exit(0);
 	}
 	
-	successbox('Your comment has been posted. Please wait.');
+	successbox('您的评论已发布，请稍候。');
 	header("Location:file.php?id=" . $file_get['id']);
 	include 'footer.php';
 	exit(0);
@@ -64,11 +64,11 @@ if($user_type==2&&!empty($_GET["deletecomment"])){
 	}
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to delete comment.');
+		errorbox('无法删除评论。');
 		include 'footer.php';
 		exit(0);
 	}
-	successbox('Comment deleted. Please wait.');
+	successbox('评论已删除，请稍候。');
 	header("Location:file.php?id=" . $file_get['id']);
 	include 'footer.php';
 	exit(0);
@@ -88,7 +88,7 @@ if($user_type!=-1){
 	}
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to check if user likes file.');
+		errorbox('无法检查用户是否喜欢此文件。');
 		include 'footer.php';
 		exit(0);
 	}
@@ -111,7 +111,7 @@ if(!empty($_GET["action"])){
 					SET likes = likes-1
 					WHERE id = ?");
 				$stmt->execute(array($file_get['id']));
-				successbox('You no longer like this file. Please wait.');
+				successbox('您取消喜欢了此文件，请稍候。');
 			}
 			else{
 				$stmt = $db->prepare("
@@ -123,7 +123,7 @@ if(!empty($_GET["action"])){
 					SET likes = likes+1
 					WHERE id = ?");
 				$stmt->execute(array($file_get['id']));
-				successbox('You liked this file. Please wait.');
+				successbox('您成功喜欢了此文件，请稍候。');
 			}
 			$db->commit();
 			header("Location:file.php?id=" . $file_get['id']);
@@ -161,7 +161,7 @@ if(!empty($_GET["action"])){
 				
 				unlink('data/' . $file_get['id'] . '.zip');
 				unlink('data/' . $file_get['id'] . '.png');
-				successbox('File deleted.');
+				successbox('文件已删除。');
 				include 'footer.php';
 				exit(0);
 			}
@@ -174,7 +174,7 @@ if(!empty($_GET["action"])){
 						SET featured = 0
 						WHERE id = ?");
 					$stmt->execute(array($file_get['id']));
-					successbox('File is no longer featured. Please wait.');
+					successbox('文件不再被精选，请稍候。');
 				}
 				else{
 					$stmt = $db->prepare("
@@ -182,7 +182,7 @@ if(!empty($_GET["action"])){
 						SET featured = 1
 						WHERE id = ?");
 					$stmt->execute(array($file_get['id']));
-					successbox('File featured. Please wait.');
+					successbox('文件已被精选，请稍候。');
 				}
 				header("Location:file.php?id=" . $file_get['id']);
 				include 'footer.php';
@@ -190,14 +190,14 @@ if(!empty($_GET["action"])){
 			}
 			
 			else
-				errorbox('Invalid file operation.');
+				errorbox('无效的文件操作。');
 		}
 		else
-			errorbox('Invalid file operation.');
+			errorbox('无效的文件操作。');
 		
 	}
 	catch(PDOException $ex){
-		errorbox('Failed to modify file.');
+		errorbox('无法修改文件。');
 		include 'footer.php';
 		exit(0);
 	}
@@ -241,7 +241,7 @@ try{
 
 //Handle errors
 catch(PDOException $ex){
-	errorbox('Failed to load file information.');
+	errorbox('无法加载文件信息。');
 	include 'footer.php';
 	exit(0);
 }
@@ -257,7 +257,7 @@ catch(PDOException $ex){
 						<img class="responsive-img" src="/data/<?php echo $file_get['id'] ?>.png">
 <?php if($user_type==2){ ?>
 						<br><a href="file.php?id=<?php echo $file_get['id'] ?>&action=feature" class="btn waves-effect waves-light <?php if($file_get['featured']){ echo 'red">Un-Feature'; } else { echo 'green">Feature'; } ?></a>
-						<a href="file.php?id=<?php echo $file_get['id'] ?>&action=delete" class="btn waves-effect waves-light red">Delete</a>
+						<a href="file.php?id=<?php echo $file_get['id'] ?>&action=delete" class="btn waves-effect waves-light red">删除</a>
 <?php } ?>
 					</div>
 					<div class="col s5 center-align">
@@ -270,7 +270,7 @@ foreach($result as $tag){
 	echo '<a href="browse.php?tags[]=' . $tag['tag'] . '" class="chip">' . $tag['tag'] . '</a>';
 }
 						?></p>
-						<a href="download.php?id=<?php echo $file_get['id'] ?>" class="btn waves-effect waves-light <?php echo $theme ?>">Download</a>
+						<a href="download.php?id=<?php echo $file_get['id'] ?>" class="btn waves-effect waves-light <?php echo $theme ?>">下载</a>
 <?php if($user_type==0||$user_type==2){ ?>
 						<a href="file.php?id=<?php echo $file_get['id'] ?>&action=like" class="btn waves-effect waves-light <?php if($file_liked){ echo 'red'; } else { echo $theme; } ?>"><i class="tiny fa fa-thumbs-<?php if($file_liked) echo 'down'; else echo 'up'; ?>" aria-hidden="true"></i></a>
 <?php } ?>
@@ -281,7 +281,7 @@ foreach($result as $tag){
 <?php if(!empty($comments)){ ?>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Comments</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">评论</span>
 				<div class="row"></div>
 <?php
 	//Comments
@@ -300,14 +300,14 @@ pagination($num_rows, 10, $theme);
 if($user_type==0||$user_type==2){ ?>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">New Comment</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">发表新评论</span>
 				<form action="file.php?id=<?php echo $file_get['id'] ?>" method="post" class="col s12 m10 offset-m1 l8 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-comment prefix" aria-hidden="true"></i>
 						<textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
-						<label for="comment">Comment</label>
+						<label for="comment">内容</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Post</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">发表评论</button>
 				</form><div class="row"></div>
 			</div>
 		</div>

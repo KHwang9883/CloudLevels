@@ -20,12 +20,12 @@
 //CloudLevels Upload File Page
 
 //Header + Vars:
-$page_title='Upload';
+$page_title='上传';
 include 'header.php';
 
 //Members only!
 if($user_type==-1||$user_type==1){
-	errorbox('You do not have permission to view this page.');
+	errorbox('您无权查看此页面。');
 	include 'footer.php';
 	exit(0);
 }
@@ -37,35 +37,35 @@ if(!empty($_POST["title"])){
 	
 	//Check for errors
 	if($_FILES['file']['error']!=UPLOAD_ERR_OK||$_FILES['screenshot']['error']!=UPLOAD_ERR_OK){
-		errorbox('Upload failed. Please try again later.');
+		errorbox('上传失败，请稍后再试。');
 		include 'footer.php';
 		exit(0);
 	}
 	
 	//Verify file size
 	if($_FILES['file']['size']>$file_size_limit){
-		errorbox('Your file has exceeded the maximum file size of ' . $file_size_limit/1000000 . 'MB.');
+		errorbox('您的文件已超过最大文件大小 ' . $file_size_limit/1000000 . 'MB。');
 		include 'footer.php';
 		exit(0);
 	}
 	
 	//Verify image size
 	if($_FILES['screenshot']['size']>$file_size_limit){
-		errorbox('Your screenshot has exceeded the maximum file size of ' . $file_size_limit/1000000 . 'MB.');
+		errorbox('您的截图已超过最大文件大小 ' . $file_size_limit/1000000 . 'MB。');
 		include 'footer.php';
 		exit(0);
 	}
 	
 	//File must be a ZIP
 	if(strtolower(substr($_FILES['file']['name'], -4))!='.zip'){
-		errorbox('You must upload a file of type ZIP.');
+		errorbox('必须上传 .zip 格式的文件。');
 		include 'footer.php';
 		exit(0);
 	}
 	
 	//Image must be a PNG
 	if(strtolower(substr($_FILES['screenshot']['name'], -4))!='.png'){
-		errorbox('You must upload a screenshot of type PNG.');
+		errorbox('必须上传 .png 格式的截图。');
 		include 'footer.php';
 		exit(0);
 	}
@@ -113,7 +113,7 @@ if(!empty($_POST["title"])){
 	catch(PDOException $ex){
 		
 		$db->rollBack();
-		errorbox('Upload failed. Please try again later.');
+		errorbox('上传失败，请稍后再试。');
 		include 'footer.php';
 		exit(0);
 	}
@@ -123,7 +123,7 @@ if(!empty($_POST["title"])){
 	move_uploaded_file($_FILES["screenshot"]["tmp_name"], "data/" . $last_id . ".png");
 	
 	//Success!
-	successbox('File uploaded. Please wait.');
+	successbox('文件已上传，请稍候。');
 	
 	//Refresh
 	header("Refresh:2;url=file.php?id=" . $last_id);
@@ -135,11 +135,11 @@ else{
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Upload File</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">上传文件</span>
 				<form action="upload.php" method="post" enctype="multipart/form-data" class="col s12 m10 l8 offset-m1 offset-l2">
 					<div class="file-field input-field">
 						<div class="btn <?php echo $theme ?>">
-							<span>File (<?php echo ($file_size_limit/1000000); ?>MB MAX)</span>
+							<span>文件 (最大 <?php echo ($file_size_limit/1000000); ?>MB)</span>
 							<input type="file" name="file" accept="application/x-zip-compressed" required>
 						</div>
 						<div class="file-path-wrapper">
@@ -148,7 +148,7 @@ else{
 					</div>
 					<div class="file-field input-field">
 						<div class="btn <?php echo $theme ?>">
-							<span>Screenshot</span>
+							<span>截图</span>
 							<input type="file" name="screenshot" accept="image/png" required>
 						</div>
 						<div class="file-path-wrapper">
@@ -158,17 +158,17 @@ else{
 					<div class="input-field col s12">
 						<i class="fa fa-commenting-o prefix" aria-hidden="true"></i>
 						<input id="title" name="title" type="text" class="validate" required>
-						<label for="title">Title</label>
+						<label for="title">标题</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-comment prefix" aria-hidden="true"></i>
 						<textarea id="description" name="description" class="materialize-textarea" required></textarea>
-						<label for="description">Description</label>
+						<label for="description">说明</label>
 					</div>
 					<i class="fa fa-cloud small col s1" aria-hidden="true"></i> 
 					<div class="input-field col s11">
 						<select id="tags" name="tags[]" multiple>
-							<option value="" disabled selected>Select Tags</option>
+							<option value="" disabled selected>选择标签</option>
 							<?php 
 								$get_tags=explode("\n", $tags);
 								foreach($get_tags as $tag)
@@ -176,9 +176,9 @@ else{
 							?>
 
 						</select>
-						<label for="tags">Tags</label>
+						<label for="tags">标签</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Upload</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">上传</button>
 				</form><div class="row"></div>
 			</div>
 		</div>

@@ -36,12 +36,12 @@ if($user_type!=-1&&!empty($_POST["comment"])){
 	
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to post comment.');
+		errorbox('无法发表评论。');
 		include 'footer.php';
 		exit(0);
 	}
 	
-	successbox('Your comment has been posted. Please wait.');
+	successbox('您的评论已发布，请稍候。');
 	header("Location:index.php");
 	include 'footer.php';
 	exit(0);
@@ -58,11 +58,11 @@ if($user_type==2&&!empty($_GET["deletecomment"])){
 	}
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to delete comment.');
+		errorbox('无法删除评论。');
 		include 'footer.php';
 		exit(0);
 	}
-	successbox('Comment deleted. Please wait.');
+	successbox('评论已删除，请稍候。');
 	header("Location:index.php");
 	include 'footer.php';
 	exit(0);
@@ -121,7 +121,7 @@ try{
 
 //Handle errors
 catch(PDOException $ex){
-	errorbox('Failed to load file information.');
+	errorbox('无法加载文件信息。');
 }
 ?>
 		
@@ -133,14 +133,14 @@ catch(PDOException $ex){
 					<h5 class="header col s12 light"><?php echo $site_desc ?></h5>
 				</div>
 				<div class="row center">
-					<a href="<?php echo $game_url ?>" id="download-button" class="btn-large waves-effect waves-light <?php echo $theme ?>">Download Game</a>
+					<a href="<?php echo $game_url ?>" id="download-button" class="btn-large waves-effect waves-light <?php echo $theme ?>">下载游戏</a>
 				</div>
 				<br><br>
 			</div>
 		</div>
 		<div class="container">
 			<div class="card hoverable row">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Featured</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">精选</span>
 				<div class="card-content"><br><br>
 <?php
 if(!empty($result1)){
@@ -152,14 +152,14 @@ if(!empty($result1)){
 				</div>
 				
 				<div class="col s12 card-action">
-					<a class="<?php echo $theme ?>-text right" href="browse.php?featured=on">See more...</a>
+					<a class="<?php echo $theme ?>-text right" href="browse.php?featured=on">查看更多...</a>
 				</div>
 				
 			</div>
 		</div>
 		<div class="container">
 			<div class="card hoverable row">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Popular</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">热门文件</span>
 				<div class="card-content"><br><br>
 <?php
 if(!empty($result2)){
@@ -171,14 +171,14 @@ if(!empty($result2)){
 				</div>
 				
 				<div class="col s12 card-action">
-					<a class="<?php echo $theme ?>-text right" href="browse.php?sort=popular">See more...</a>
+					<a class="<?php echo $theme ?>-text right" href="browse.php?sort=popular">查看更多...</a>
 				</div>
 				
 			</div>
 		</div>
 		<div class="container">
 			<div class="card hoverable row">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Recent</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">最新文件</span>
 				<div class="card-content"><br><br>
 <?php
 if(!empty($result3)){
@@ -189,14 +189,14 @@ if(!empty($result3)){
 ?>
 				</div>
 				<div class="col s12 card-action">
-					<a class="<?php echo $theme ?>-text right" href="browse.php?sort=recent">See more...</a>
+					<a class="<?php echo $theme ?>-text right" href="browse.php?sort=recent">查看更多...</a>
 				</div>
 			</div>
 		</div>
 <?php if(!empty($comments)){ ?>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Comments</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">评论</span>
 				<div class="row"></div>
 <?php
 	//Comments
@@ -215,14 +215,14 @@ pagination($num_rows, 10, $theme);
 if($user_type==0||$user_type==2){ ?>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">New Comment</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">发表新评论</span>
 				<form action="index.php" method="post" class="col s12 m10 offset-m1 l8 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-comment prefix" aria-hidden="true"></i>
 						<textarea id="comment" name="comment" class="materialize-textarea" required></textarea>
-						<label for="comment">Comment</label>
+						<label for="comment">内容</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Post</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">发表评论</button>
 				</form><div class="row"></div>
 			</div>
 		</div>

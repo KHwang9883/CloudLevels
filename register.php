@@ -20,12 +20,12 @@
 //CloudLevels Registration Page
 
 //Header + Vars:
-$page_title='Register';
+$page_title='注册';
 include 'header.php';
 
 //Guests only!
 if($user_type!=-1){
-	errorbox('You do not have permission to view this page.');
+	errorbox('您无权查看此页面。');
 	include 'footer.php';
 	exit(0);
 }
@@ -36,14 +36,14 @@ if(!empty($_POST["username"])){
 	//Verify registration question
 	if($_POST["reg_question"]!=$reg_answer){
 		
-		errorbox($reg_question . ' Hit the back button and try again.');
+		errorbox($reg_question . ' 点击返回按钮，然后重试。');
 		
 	}
 	
 	//Check password confirmation
 	else if($_POST["password"]!=$_POST["password_confirm"]){
 		
-		errorbox('Your passwords do not match. Hit the back button and try again.');
+		errorbox('密码不匹配。点击返回按钮，然后重试。');
 		
 	}
 	
@@ -62,7 +62,7 @@ if(!empty($_POST["username"])){
 			//If user exists
 			if ($stmt->rowCount()>0){
 				
-				errorbox('User already exists.');
+				errorbox('用户已存在。');
 				
 			}
 			else{
@@ -77,7 +77,7 @@ if(!empty($_POST["username"])){
 				//If IP address exists
 				if ($stmt->rowCount()>0){
 					
-					errorbox('You are only allowed to have one account.');
+					errorbox('您只能拥有一个帐户。');
 					
 				}
 				else{
@@ -87,7 +87,7 @@ if(!empty($_POST["username"])){
 						INSERT INTO cl_user(username, password, date, ip)
 						VALUES(?,?,?,?)");
 					$stmt->execute(array(htmlspecialchars($_POST["username"]), crypt($_POST["password"]), date("F j, Y"), $_SERVER['REMOTE_ADDR']));
-					successbox('Your account has been created. Please log in.');
+					successbox('您的帐户已创建。请登录。');
 					
 				}
 				
@@ -98,7 +98,7 @@ if(!empty($_POST["username"])){
 		catch(PDOException $ex){
 			
 			$db->rollBack();
-			errorbox('Account could not be created. Hit the back button and try again.');
+			errorbox('无法创建帐户。点击返回按钮，然后重试。');
 			
 		}
 		
@@ -110,29 +110,29 @@ else{
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Register</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">注册</span>
 				<form action="register.php" method="post" class="col s12 m10 l8 offset-m1 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-user prefix" aria-hidden="true"></i>
 						<input id="username" name="username" type="text" class="validate" required>
-						<label for="username">User Name</label>
+						<label for="username">用户名</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password" name="password" type="password" class="validate" required>
-						<label for="password">Password</label>
+						<label for="password">密码</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password-confirm" name="password_confirm" type="password" class="validate" required>
-						<label for="password-confirm">Confirm Password</label>
+						<label for="password-confirm">确认密码</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-lock prefix" aria-hidden="true"></i>
 						<input id="reg-question" name="reg_question" type="text" class="validate" required>
 						<label for="reg-question"><?php echo $reg_question ?></label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Register</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">注册</button>
 				</form><div class="row"></div>
 			</div>
 		</div>

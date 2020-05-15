@@ -20,12 +20,12 @@
 //CloudLevels Member Management
 
 //Header + Vars:
-$page_title='Members';
+$page_title='用户管理';
 include 'header.php';
 
 //Admins only!
 if($user_type!=2){
-	errorbox('You do not have permission to view this page.');
+	errorbox('您无权查看此页面。');
 	include 'footer.php';
 	exit(0);
 }
@@ -38,7 +38,7 @@ try{
 	if(!empty($_GET["user"])){
 		
 		if($_GET["user"]==$user_name){
-			errorbox('You can not demote yourself!');
+			errorbox('您无法修改自己。');
 		}
 		
 		else{
@@ -50,9 +50,9 @@ try{
 				WHERE username = ?");
 			$stmt->execute(array($_GET["update"], $_GET["user"]));
 			
-			if($_GET["update"]==0) successbox($_GET["user"] . " is now a regular member.");
-			else if($_GET["update"]==1) successbox($_GET["user"] . " has been banned. Good bye!");
-			else if($_GET["update"]==2) successbox($_GET["user"] . " is now an administrator.");
+			if($_GET["update"]==0) successbox($_GET["user"] . " 现在是普通用户。");
+			else if($_GET["update"]==1) successbox($_GET["user"] . " 已经被封禁。");
+			else if($_GET["update"]==2) successbox($_GET["user"] . " 现在是管理员。");
 			
 		}
 		
@@ -113,58 +113,58 @@ try{
 
 //Handle errors
 catch(PDOException $ex){
-	errorbox('Failed to load member data.');
+	errorbox('无法加载用户数据。');
 }
 ?>
 		
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Filters</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">筛选器</span>
 				<form action="members.php" method="get">
 					<div class="input-field col s6">
 						<i class="fa fa-user prefix" aria-hidden="true"></i>
 						<input id="username" name="username" type="text" value="<?php if(!empty($_GET["username"])){echo $_GET["username"];} ?>" class="validate">
-						<label for="username">Username</label>
+						<label for="username">用户名</label>
 					</div>
 					<div class="input-field col s6">
 						<select id="group" name="group" required>
-							<option value="all">All Users</option>
-							<option value="member"<?php if(!empty($_GET["group"])&&$_GET["group"]=='member') echo ' selected'; ?>>Member</option>
-							<option value="staff"<?php if(!empty($_GET["group"])&&$_GET["group"]=='staff') echo ' selected'; ?>>Staff</option>
-							<option value="banned"<?php if(!empty($_GET["group"])&&$_GET["group"]=='banned') echo ' selected'; ?>>Banned</option>
+							<option value="all">所有用户</option>
+							<option value="member"<?php if(!empty($_GET["group"])&&$_GET["group"]=='member') echo ' selected'; ?>>普通用户</option>
+							<option value="staff"<?php if(!empty($_GET["group"])&&$_GET["group"]=='staff') echo ' selected'; ?>>管理员</option>
+							<option value="banned"<?php if(!empty($_GET["group"])&&$_GET["group"]=='banned') echo ' selected'; ?>>被封禁的用户</option>
 						</select>
-						<label for="group">User Group</label>
+						<label for="group">用户组</label>
 					</div>
 					<div class="input-field col s6">
 						<i class="fa fa-map-marker prefix" aria-hidden="true"></i>
 						<input id="ip" name="ip" type="text" value="<?php if(!empty($_GET["ip"])){echo $_GET["ip"];} ?>" class="validate">
-						<label for="ip">IP Address</label>
+						<label for="ip">IP 地址</label>
 					</div>
 					<div class="input-field col s6">
 						<select id="sort" name="sort" required>
-							<option value="recent">Most Recent</option>
-							<option value="uploaded"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='uploaded') echo ' selected'; ?>>Most Uploads</option>
+							<option value="recent">最新</option>
+							<option value="uploaded"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='uploaded') echo ' selected'; ?>>最多上传</option>
 						</select>
-						<label for="sort">Sort</label>
+						<label for="sort">排序</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s10 l8 offset-s1 offset-l2" type="submit">Filter</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s10 l8 offset-s1 offset-l2" type="submit">筛选</button>
 				</form><div class="row"></div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Members</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">用户管理</span>
 				<div class="row">
-					<p class="center col s12"><strong><span class="blue-text">Member</span> | <span class="green-text">Staff</span> | <span class="red-text">Banned</span></strong></p>
+					<p class="center col s12"><strong><span class="blue-text">普通用户</span> | <span class="green-text">管理员</span> | <span class="red-text">被封禁的用户</span></strong></p>
 					<table class="col s10 offset-s1 centered striped">
 						<thead>
 							<tr>
-								<th>Username</th>
-								<th>Uploads</th>
-								<th>Join Date</th>
-								<th>IP Address</th>
-								<th>Actions</th>
+								<th>用户名</th>
+								<th>上传数</th>
+								<th>注册时间</th>
+								<th>IP 地址</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody><?php

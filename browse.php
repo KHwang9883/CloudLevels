@@ -20,7 +20,7 @@
 //CloudLevels Browse Page
 
 //Header + Vars:
-$page_title='Browse';
+$page_title='浏览';
 include 'header.php';
 
 $result=null;
@@ -103,16 +103,16 @@ catch(PDOException $ex){
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Filters</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">筛选器</span>
 				<form action="browse.php" method="get">
 					<div class="input-field col s6">
 						<i class="fa fa-commenting-o prefix" aria-hidden="true"></i>
 						<input id="title" name="title" type="text" value="<?php if(!empty($_GET["title"])){echo $_GET["title"];} ?>" class="validate">
-						<label for="title">Title</label>
+						<label for="title">标题</label>
 					</div>
 					<div class="input-field col s6">
 						<select id="tags" name="tags[]" multiple>
-							<option value="" disabled selected>Select Tags</option>
+							<option value="" disabled selected>选择标签</option>
 							<?php 
 								$get_tags=explode("\n", $tags);
 								foreach($get_tags as $tag){
@@ -124,48 +124,48 @@ catch(PDOException $ex){
 							?>
 
 						</select>
-						<label for="tags">Tags</label>
+						<label for="tags">标签</label>
 					</div>
 					<div class="input-field col s6">
 						<i class="fa fa-user prefix" aria-hidden="true"></i>
 						<input id="author" name="author" type="text" value="<?php if(!empty($_GET["author"])){echo $_GET["author"];} ?>" class="validate">
-						<label for="author">Author</label>
+						<label for="author">作者</label>
 					</div>
 					<div class="input-field col s6">
 						<select id="sort" name="sort" required>
-							<option value="recent"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='recent') echo ' selected'; ?>>Most Recent</option>
-							<option value="popular"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='popular') echo ' selected'; ?>>Most Popular</option>
-							<option value="downloaded"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='downloaded') echo ' selected'; ?>>Most Downloaded</option>
+							<option value="recent"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='recent') echo ' selected'; ?>>最新</option>
+							<option value="popular"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='popular') echo ' selected'; ?>>最热门</option>
+							<option value="downloaded"<?php if(!empty($_GET["sort"])&&$_GET["sort"]=='downloaded') echo ' selected'; ?>>最多下载</option>
 						</select>
-						<label for="sort">Sort</label>
+						<label for="sort">排序</label>
 					</div>
 					<div class="switch col s6">
 						<label>
-						All
+						全部
 						<input type="checkbox" name="featured"<?php if(!empty($_GET["featured"])) echo ' checked'; ?>>
 						<span class="lever"></span>
-						Featured
+						精选
 						</label>
 					</div>
 <?php if($user_type==0||$user_type==2){ ?>
 					<div class="switch col s6 right-align">
 						<label>
-						All
+						全部
 						<input type="checkbox" name="liked"<?php if(!empty($_GET["liked"])) echo ' checked'; ?>>
 						<span class="lever"></span>
-						Liked
+						喜欢
 						</label>
 					</div>
 <?php } ?>
 					<div class="row"></div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s10 l8 offset-s1 offset-l2" type="submit">Filter</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s10 l8 offset-s1 offset-l2" type="submit">筛选</button>
 				</form><div class="row"></div>
 			</div>
 		</div>
 		
 		<div class="container">
 			<div class="card hoverable row">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Browse</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">浏览</span>
 				<div class="card-content"><br><br>
 <?php
 if(!empty($result)){

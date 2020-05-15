@@ -32,12 +32,12 @@ include 'configuration.php';
 
 //Red error box
 function errorbox($string){
-	echo '<br><div class="container"><div class="card hoverable red"><div class="card-content white-text"><p>ERROR: ' . $string . '</p></div></div></div>';
+	echo '<br><div class="container"><div class="card hoverable red"><div class="card-content white-text"><p>错误：' . $string . '</p></div></div></div>';
 }
 
 //Green success box
 function successbox($string){
-	echo '<br><div class="container"><div class="card hoverable green"><div class="card-content white-text"><p>SUCCESS: ' . $string . '</p></div></div></div>';
+	echo '<br><div class="container"><div class="card hoverable green"><div class="card-content white-text"><p>成功：' . $string . '</p></div></div></div>';
 }
 
 //Member colors (Materialize CSS classes)
@@ -223,12 +223,12 @@ $page_title.=$site_name;
 		<nav class="<?php echo $theme ?> lighten-1 z-depth-1" style="overflow:hidden;">
 			<div class="container">
 				<ul class="right">
-					<li><a href="browse.php">Browse</a></li>
+					<li><a href="browse.php">浏览</a></li>
 <?php if(!$logged_in){ ?>
-					<li><a href="login.php">Log In</a></li>
-					<li><a href="register.php">Register</a></li>
+					<li><a href="login.php">登录</a></li>
+					<li><a href="register.php">注册</a></li>
 <?php } else{?>
-					<li><a href="upload.php">Upload</a></li>
+					<li><a href="upload.php">上传</a></li>
 					<li><a class="dropdown-button" data-activates="user-menu" data-beloworigin="true"><?php echo $user_name ?> <span class="fa fa-caret-down" aria-hidden="true"></span></a></li>
 <?php } ?>
 				</ul>
@@ -237,28 +237,28 @@ $page_title.=$site_name;
 		</nav>
 		<ul id="user-menu" class="dropdown-content">
 <?php if($user_type==2){ ?>
-			<li><a href="admin.php">Admin</a></li>
-			<li><a href="members.php">Members</a></li>
-			<li><a href="comments.php">Comments</a></li>
+			<li><a href="admin.php">管理员控制面板</a></li>
+			<li><a href="members.php">管理用户</a></li>
+			<li><a href="comments.php">管理评论</a></li>
 			<li class="divider"></li>
 <?php } ?>
-			<li><a href="browse.php?author=<?php echo $user_name ?>">Uploads</a></li>
-			<li><a href="settings.php">Settings</a></li>
+			<li><a href="browse.php?author=<?php echo $user_name ?>">已上传</a></li>
+			<li><a href="settings.php">设置</a></li>
 			<li class="divider"></li>
-			<li><a href="logout.php">Log Out</a></li>
+			<li><a href="logout.php">退出登录</a></li>
 		</ul>
 
 <?php
 //DB Error
 if($db_error){
-	errorbox('Failed to connect to database.');
+	errorbox('无法连接数据库');
 	include 'footer.php';
 	exit(0);
 }
 
 //Banned
 if($user_type==1){
-	errorbox('You are banned.');
+	errorbox('你已被封禁。');
 	include 'footer.php';
 	exit(0);
 }

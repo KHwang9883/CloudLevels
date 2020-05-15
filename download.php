@@ -20,7 +20,7 @@
 //CloudLevels Download File
 
 //Header + Vars:
-$page_title='Download';
+$page_title='下载';
 include 'header.php';
 
 //Get file + record in DB
@@ -41,7 +41,7 @@ if(!empty($_GET["id"])){
 		$stmt->execute(array($_GET["id"]));
 	}
 	catch(PDOException $ex){
-		errorbox('Failed to load file information.');
+		errorbox('无法加载文件信息。');
 	}
 	
 	//File to download
@@ -61,7 +61,7 @@ if(!empty($_GET["id"])){
 	}
 	
 	//File not found
-	errorbox('File is missing from server.');
+	errorbox('找不到文件。');
 	
 }
 

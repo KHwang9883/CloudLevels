@@ -20,12 +20,12 @@
 //CloudLevels Admin Control Panel
 
 //Header + Vars:
-$page_title='Administrator Control Panel';
+$page_title='管理员控制面板';
 include 'header.php';
 
 //Admins only!
 if($user_type!=2){
-	errorbox('You do not have permission to view this page.');
+	errorbox('您无权查看此页面。');
 	include 'footer.php';
 	exit(0);
 }
@@ -36,7 +36,7 @@ if(!empty($_POST["name"])){
 	//Create configuration file:
 
 	//Open file
-	$configfile = fopen("configuration.php", "w") or die('<div class="card hoverable red"><div class="card-content white-text"><p>ERROR: File <strong>configuration.php</strong> could not be written to server.</p></div></div>');
+	$configfile = fopen("configuration.php", "w") or die('<div class="card hoverable red"><div class="card-content white-text"><p>错误: 无法将文件 <strong>configuration.php</strong> 写入服务器。</p></div></div>');
 	fwrite($configfile, "<?php\n");
 
 	//Write database values
@@ -61,7 +61,7 @@ if(!empty($_POST["name"])){
 	fclose($configfile);
 	
 	//Message
-	successbox('Settings updated. Please wait.');
+	successbox('设置已更新，请稍候。');
 	
 	//Refresh
 	header("Refresh:2");
@@ -73,66 +73,66 @@ else{
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Administrator Control Panel</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">管理员控制面板</span>
 				<form action="admin.php" method="post" class="col s12 m10 l8 offset-m1 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-commenting-o prefix" aria-hidden="true"></i>
 						<input id="name" name="name" type="text" value="<?php echo $site_name ?>" class="validate" required>
-						<label for="name">Site Name</label>
+						<label for="name">网站名称</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-comment prefix" aria-hidden="true"></i>
 						<textarea id="description" name="description" class="materialize-textarea" required><?php echo $site_desc ?></textarea>
-						<label for="description">Site Description</label>
+						<label for="description">网站说明</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-download prefix" aria-hidden="true"></i>
 						<input id="download" name="download" type="url" value="<?php echo $game_url ?>" class="validate" required>
-						<label for="download">Game Download Link</label>
+						<label for="download">游戏下载链接</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-folder prefix" aria-hidden="true"></i>
 						<input id="file-size" name="file_size" type="number" value="<?php echo $file_size_limit ?>" class="validate" required>
-						<label for="file-size">Max File Size Limit (Bytes)</label>
+						<label for="file-size">最大文件大小限制 (字节)</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-cloud prefix" aria-hidden="true"></i>
 						<textarea id="tag-list" name="tag_list" class="materialize-textarea" required><?php echo $tags ?></textarea>
-						<label for="tag-list">Tags</label>
+						<label for="tag-list">标签</label>
 					</div>
 					<i class="fa fa-paint-brush small col s1" aria-hidden="true"></i> 
 					<div class="input-field col s11">
 						<select id="theme" name="theme">
-							<option value="light-blue"<?php if($theme=='light-blue') echo ' selected'; ?>>Light Blue</option>
-							<option value="cyan"<?php if($theme=='cyan') echo ' selected'; ?>>Cyan</option>
-							<option value="teal"<?php if($theme=='teal') echo ' selected'; ?>>Teal</option>
-							<option value="green"<?php if($theme=='green') echo ' selected'; ?>>Green</option>
-							<option value="light-green"<?php if($theme=='light-green') echo ' selected'; ?>>Light Green</option>
-							<option value="lime"<?php if($theme=='lime') echo ' selected'; ?>>Lime</option>
-							<option value="amber"<?php if($theme=='amber') echo ' selected'; ?>>Amber</option>
-							<option value="orange"<?php if($theme=='orange') echo ' selected'; ?>>Orange</option>
-							<option value="deep-orange"<?php if($theme=='deep-orange') echo ' selected'; ?>>Deep Orange</option>
-							<option value="brown"<?php if($theme=='brown') echo ' selected'; ?>>Brown</option>
-							<option value="grey"<?php if($theme=='grey') echo ' selected'; ?>>Grey</option>
-							<option value="blue-grey"<?php if($theme=='blue-grey') echo ' selected'; ?>>Blue Grey</option>
-							<option value="blue"<?php if($theme=='blue') echo ' selected'; ?>>Blue</option>
-							<option value="indigo"<?php if($theme=='indigo') echo ' selected'; ?>>Indigo</option>
-							<option value="deep-purple"<?php if($theme=='deep-purple') echo ' selected'; ?>>Deep Purple</option>
-							<option value="purple"<?php if($theme=='purple') echo ' selected'; ?>>Purple</option>
-							<option value="pink"<?php if($theme=='pink') echo ' selected'; ?>>Pink</option>
-							<option value="red"<?php if($theme=='red') echo ' selected'; ?>>Red</option>
+							<option value="light-blue"<?php if($theme=='light-blue') echo ' selected'; ?>>浅蓝色</option>
+							<option value="cyan"<?php if($theme=='cyan') echo ' selected'; ?>>青色</option>
+							<option value="teal"<?php if($theme=='teal') echo ' selected'; ?>>蓝绿色</option>
+							<option value="green"<?php if($theme=='green') echo ' selected'; ?>>绿色</option>
+							<option value="light-green"<?php if($theme=='light-green') echo ' selected'; ?>>浅绿色</option>
+							<option value="lime"<?php if($theme=='lime') echo ' selected'; ?>>淡绿色</option>
+							<option value="amber"<?php if($theme=='amber') echo ' selected'; ?>>琥珀色</option>
+							<option value="orange"<?php if($theme=='orange') echo ' selected'; ?>>橙色</option>
+							<option value="deep-orange"<?php if($theme=='deep-orange') echo ' selected'; ?>>深橙色</option>
+							<option value="brown"<?php if($theme=='brown') echo ' selected'; ?>>棕色</option>
+							<option value="grey"<?php if($theme=='grey') echo ' selected'; ?>>灰色</option>
+							<option value="blue-grey"<?php if($theme=='blue-grey') echo ' selected'; ?>>蓝灰色</option>
+							<option value="blue"<?php if($theme=='blue') echo ' selected'; ?>>蓝色</option>
+							<option value="indigo"<?php if($theme=='indigo') echo ' selected'; ?>>靛青色</option>
+							<option value="deep-purple"<?php if($theme=='deep-purple') echo ' selected'; ?>>深紫色</option>
+							<option value="purple"<?php if($theme=='purple') echo ' selected'; ?>>紫色</option>
+							<option value="pink"<?php if($theme=='pink') echo ' selected'; ?>>粉色</option>
+							<option value="red"<?php if($theme=='red') echo ' selected'; ?>>红色</option>
 						</select>
-						<label for="theme">Theme</label>
+						<label for="theme">主题</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-lock prefix" aria-hidden="true"></i>
 						<input id="reg-question" name="reg_question" type="text" value="<?php echo $reg_question ?>" class="validate" required>
-						<label for="reg-question">Registration Question</label>
+						<label for="reg-question">验证问题</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="reg-answer" name="reg_answer" type="text" value="<?php echo $reg_answer ?>" class="validate" required>
-						<label for="reg-answer">Answer to Registration Question</label>
+						<label for="reg-answer">验证问题答案</label>
 					</div>
 					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Save</button>
 				</form><div class="row"></div>

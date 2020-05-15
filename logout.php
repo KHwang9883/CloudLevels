@@ -20,7 +20,7 @@
 //CloudLevels Logout Page
 
 //Header + Vars:
-$page_title='Log Out';
+$page_title='退出登录';
 include 'header.php';
 
 //Destroy Session
@@ -30,7 +30,7 @@ session_destroy();
 header("Refresh:2;url=index.php");
 
 //Message
-successbox('You have been logged out.');
+successbox('您已经退出登录。');
 
 //Footer
 include 'footer.php';

@@ -20,7 +20,7 @@
 //CloudLevels View All Comments
 
 //Header + Vars:
-$page_title='Comments';
+$page_title='评论';
 include 'header.php';
 
 //Delete comments
@@ -33,11 +33,11 @@ if($user_type==2&&!empty($_GET["deletecomment"])){
 	}
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to delete comment.');
+		errorbox('无法删除评论。');
 		include 'footer.php';
 		exit(0);
 	}
-	successbox('Comment deleted. Please wait.');
+	successbox('评论已删除，请稍候。');
 	header("Location:comments.php");
 	include 'footer.php';
 	exit(0);
@@ -73,28 +73,28 @@ try{
 
 //Handle errors
 catch(PDOException $ex){
-	errorbox('Failed to load comments.');
+	errorbox('无法加载评论。');
 }
 ?>
 		
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Filters</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">筛选器</span>
 				<form action="comments.php" method="get">
 					<div class="input-field col s12">
 						<i class="fa fa-user prefix" aria-hidden="true"></i>
 						<input id="author" name="author" type="text" value="<?php if(!empty($_GET["author"])){echo $_GET["author"];} ?>" class="validate">
-						<label for="author">Author</label>
+						<label for="author">用户</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s10 l8 offset-s1 offset-l2" type="submit">Filter</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s10 l8 offset-s1 offset-l2" type="submit">筛选</button>
 				</form><div class="row"></div>
 			</div>
 		</div>
 		
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Comments</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">评论</span>
 				<div class="row"></div>
 <?php
 	//Comments

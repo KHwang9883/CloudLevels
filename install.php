@@ -24,14 +24,14 @@ if(!empty($_POST["username"])){
 	
 	//Check if confirm password matches password field
 	if($_POST["password"]!=$_POST["password_confirm"]){
-		echo '<div class="card hoverable red"><div class="card-content white-text"><p>ERROR: Your entered passwords do not match.</p></div></div>';
+		echo '<div class="card hoverable red"><div class="card-content white-text"><p>错误：您输入的密码不匹配。</p></div></div>';
 		exit(0);
 	}
 
 	//Create configuration file:
 
 	//Open file
-	$configfile = fopen("configuration.php", "w") or die('<div class="card hoverable red"><div class="card-content white-text"><p>ERROR: File <strong>configuration.php</strong> could not be written to server.</p></div></div>');
+	$configfile = fopen("configuration.php", "w") or die('<div class="card hoverable red"><div class="card-content white-text"><p>错误: 无法将文件 <strong>configuration.php</strong> 写入服务器。</p></div></div>');
 	fwrite($configfile, "<?php\n");
 
 	//Write database values
@@ -42,13 +42,13 @@ if(!empty($_POST["username"])){
 	fwrite($configfile, "\$db_database='" . addslashes($_POST["db_database"]) . "';\n");
 	
 	//Write default configuration stuff
-	fwrite($configfile, "\$site_name='Site Name';\n");
-	fwrite($configfile, "\$site_desc='Set the description here!';\n");
+	fwrite($configfile, "\$site_name='在此处填写网站名称';\n");
+	fwrite($configfile, "\$site_desc='在此处填写网站说明';\n");
 	fwrite($configfile, "\$game_url='#';\n");
 	fwrite($configfile, "\$file_size_limit='1000000';\n");
-	fwrite($configfile, "\$tags='Each\nTag\nGoes\nOn\nA\nNew\nLine';\n");
+	fwrite($configfile, "\$tags='每个\n标签\n为\n一行';\n");
 	fwrite($configfile, "\$theme='light-blue';\n");
-	fwrite($configfile, "\$reg_question='What is 1 plus 8 minus the number of clouds in your head?';\n");
+	fwrite($configfile, "\$reg_question='1 + 8 = ?';\n");
 	fwrite($configfile, "\$reg_answer='9';\n");
 	
 	//Close file
@@ -142,7 +142,7 @@ if(!empty($_POST["username"])){
 	catch(PDOException $ex){
 		
 		//$db->rollBack();
-		echo '<div class="card hoverable red"><div class="card-content white-text"><p>ERROR: ' . $ex->getMessage() . '</p></div></div>';
+		echo '<div class="card hoverable red"><div class="card-content white-text"><p>错误：' . $ex->getMessage() . '</p></div></div>';
 		exit(0);
 		
 	}
@@ -159,7 +159,7 @@ $supported_db_types = PDO::getAvailableDrivers();
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-		<title>CloudLevels Installer</title>
+		<title>CloudLevels 安装器</title>
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	</head>
@@ -170,7 +170,7 @@ $supported_db_types = PDO::getAvailableDrivers();
 			?>
 			<div class="card hoverable red">
 				<div class="card-content white-text">
-					<p>ERROR: No supported database types detected.</p>
+					<p>错误：未检测到支持的数据库类型。</p>
 				</div>
 			</div>
 			<?php
@@ -179,29 +179,29 @@ $supported_db_types = PDO::getAvailableDrivers();
 			?>
 			<div class="card hoverable green">
 				<div class="card-content white-text">
-					<p>SUCCESS: Installation complete! Please delete <strong>install.php</strong> from your server.</p>
+					<p>安装完成！请从您的服务器中删除 <strong>install.php</strong>。</p>
 				</div>
 			</div>
 			<?php
 			}
 			?>
 			<div class="row card hoverable">
-				<span class="col s12 card-title light-blue white-text center" style="font-size: 200%;">Install</span>
+				<span class="col s12 card-title light-blue white-text center" style="font-size: 200%;">安装</span>
 				<form action="install.php" method="post" class="col s12 m10 l8 offset-m1 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-user prefix" aria-hidden="true"></i>
 						<input id="username" name="username" type="text" class="validate" required>
-						<label for="username">User Name</label>
+						<label for="username">用户名</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password" name="password" type="password" class="validate" required>
-						<label for="password">Password</label>
+						<label for="password">密码</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password-confirm" name="password_confirm" type="password" class="validate" required>
-						<label for="password-confirm">Confirm Password</label>
+						<label for="password-confirm">确认密码</label>
 					</div>
 					<i class="fa fa-database small col s1" aria-hidden="true"></i> 
 					<div class="input-field col s11">
@@ -212,29 +212,29 @@ $supported_db_types = PDO::getAvailableDrivers();
 							?>
 
 						</select>
-						<label for="db_type">Database Type</label>
+						<label for="db_type">数据库类型</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-database prefix" aria-hidden="true"></i>
 						<input id="db-hostname" name="db_hostname" type="text" class="validate" required>
-						<label for="db-hostname">Database Hostname</label>
+						<label for="db-hostname">数据库主机名</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-database prefix" aria-hidden="true"></i>
 						<input id="db-username" name="db_username" type="text" class="validate" required>
-						<label for="db-username">Database Username</label>
+						<label for="db-username">数据库用户名</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-database prefix" aria-hidden="true"></i>
 						<input id="db-password" name="db_password" type="password" class="validate" required>
-						<label for="db-password">Database Password</label>
+						<label for="db-password">数据库密码</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-database prefix" aria-hidden="true"></i>
 						<input id="db-database" name="db_database" type="text" class="validate" required>
-						<label for="db-database">Database Name</label>
+						<label for="db-database">数据库名称</label>
 					</div>
-					<button class="btn waves-effect waves-light light-blue col s12" type="submit">Install</button>
+					<button class="btn waves-effect waves-light light-blue col s12" type="submit">安装</button>
 				</form><div class="row"></div>
 			</div>
 		</div>

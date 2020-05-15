@@ -20,12 +20,12 @@
 //CloudLevels Login Page
 
 //Header + Vars:
-$page_title='Login';
+$page_title='登录';
 include 'header.php';
 
 //Guests only!
 if($user_type!=-1){
-	errorbox('You do not have permission to view this page.');
+	errorbox('您无权查看此页面。');
 	include 'footer.php';
 	exit(0);
 }
@@ -45,7 +45,7 @@ if(!empty($_POST["username"])){
 		
 		//Compare password hash
 		if(crypt($_POST["password"], $passhash)==$passhash){
-			successbox('Logging in. Please wait.');
+			successbox('正在登录，请稍候。');
 			
 			//Session set
 			$_SESSION['uid']=$result[0]['id'];
@@ -55,14 +55,14 @@ if(!empty($_POST["username"])){
 			
 		}
 		else{
-			errorbox('Invalid login information.');
+			errorbox('无效的登录信息。');
 		}
 		
 	}
 	
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Login failed. Please try again later.');
+		errorbox('登录失败，请稍后再试。');
 	}
 	
 }
@@ -72,19 +72,19 @@ else{
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Log In</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">登录</span>
 				<form action="login.php" method="post" class="col s12 m10 l8 offset-m1 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-user prefix" aria-hidden="true"></i>
 						<input id="username" name="username" type="text" class="validate" required>
-						<label for="username">User Name</label>
+						<label for="username">用户名</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password" name="password" type="password" class="validate" required>
-						<label for="password">Password</label>
+						<label for="password">密码</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Log In</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">登录</button>
 				</form><div class="row"></div>
 			</div>
 		</div>

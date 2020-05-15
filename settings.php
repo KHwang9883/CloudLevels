@@ -20,12 +20,12 @@
 //CloudLevels User Settings
 
 //Header + Vars:
-$page_title='Settings';
+$page_title='设置';
 include 'header.php';
 
 //Members only!
 if($user_type==-1||$user_type==1){
-	errorbox('You do not have permission to view this page.');
+	errorbox('您无权查看此页面。');
 	include 'footer.php';
 	exit(0);
 }
@@ -37,7 +37,7 @@ if(!empty($_POST["password_old"])){
 		
 		//Check password
 		if($_POST["password_confirm"]!=$_POST["password_new"]){
-			errorbox('New password and confirm password mismatch.');
+			errorbox('新密码和确认密码不匹配。');
 		}
 		
 		//Correct password
@@ -62,17 +62,17 @@ if(!empty($_POST["password_old"])){
 					WHERE username = ?");
 				$stmt->execute(array(crypt($_POST["password_new"]), $user_name));
 				
-				successbox('Your password has been changed.');
+				successbox('您的密码已修改。');
 			}
 			else{
-				errorbox('Wrong password');
+				errorbox('密码错误');
 			}
 		}
 	}
 	
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('Failed to change password.');
+		errorbox('无法修改密码。');
 	}
 	
 }
@@ -81,24 +81,24 @@ if(!empty($_POST["password_old"])){
 		<br>
 		<div class="container">
 			<div class="row card hoverable">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">Change Password</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">修改密码</span>
 				<form action="settings.php" method="post" class="col s12 m10 l8 offset-m1 offset-l2">
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password-old" name="password_old" type="password" class="validate" required>
-						<label for="password-old">Old Password</label>
+						<label for="password-old">旧密码</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password-new" name="password_new" type="password" class="validate" required>
-						<label for="password-new">New Password</label>
+						<label for="password-new">新密码</label>
 					</div>
 					<div class="input-field col s12">
 						<i class="fa fa-key prefix" aria-hidden="true"></i>
 						<input id="password-confirm" name="password_confirm" type="password" class="validate" required>
-						<label for="password-confirm">Confirm New Password</label>
+						<label for="password-confirm">确认新密码</label>
 					</div>
-					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">Change Password</button>
+					<button class="btn waves-effect waves-light <?php echo $theme ?> col s12" type="submit">修改密码</button>
 				</form><div class="row"></div>
 			</div>
 		</div>
