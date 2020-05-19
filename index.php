@@ -41,7 +41,7 @@ if($user_type!=-1&&!empty($_POST["comment"])){
 		exit(0);
 	}
 	
-	successbox('您的评论已发布，请稍候。');
+	successbox('评论已发布，请稍候。');
 	header("Location:index.php");
 	include 'footer.php';
 	exit(0);
@@ -202,7 +202,7 @@ if(!empty($result3)){
 	//Comments
 	foreach($comments as $comment){
 		$append='';
-		if($user_type==2) $append=' <span class="green-text">[' . $comment[4] . ']</span> <a href="index.php?deletecomment=' . $comment[0] . '" class="red-text">[Delete]</a>';
+		if($user_type==2) $append=' <span class="green-text">[' . $comment[4] . ']</span> <a href="index.php?deletecomment=' . $comment[0] . '" class="red-text">[删除]</a>';
 		commentbox($comment, $append);
 	}
 //Pages

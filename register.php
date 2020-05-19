@@ -87,7 +87,7 @@ if(!empty($_POST["username"])){
 						INSERT INTO cl_user(username, password, date, ip)
 						VALUES(?,?,?,?)");
 					$stmt->execute(array(htmlspecialchars($_POST["username"]), crypt($_POST["password"]), date("F j, Y"), $_SERVER['REMOTE_ADDR']));
-					successbox('您的帐户已创建。请登录。');
+					successbox('帐户已创建。请登录。');
 					
 				}
 				

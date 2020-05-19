@@ -179,7 +179,7 @@ $supported_db_types = PDO::getAvailableDrivers();
 			?>
 			<div class="card hoverable green">
 				<div class="card-content white-text">
-					<p>安装完成！请从您的服务器中删除 <strong>install.php</strong>。</p>
+					<p>安装完成！请从服务器中删除 <strong>install.php</strong>。</p>
 				</div>
 			</div>
 			<?php

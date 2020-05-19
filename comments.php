@@ -100,9 +100,9 @@ catch(PDOException $ex){
 	//Comments
 	foreach($comments as $comment){
 		$append='';
-		if($user_type==2) $append=' <span class="green-text">[' . $comment[4] . ']</span> <a href="comments.php?deletecomment=' . $comment[0] . '" class="red-text">[Delete]</a>';
-		$append2=' <a href="index.php">[Link]</a>';
-		if($comment['file']>0) $append2=' <a href="file.php?id=' . $comment['file'] . '">[Link]</a>';
+		if($user_type==2) $append=' <span class="green-text">[' . $comment[4] . ']</span> <a href="comments.php?deletecomment=' . $comment[0] . '" class="red-text">[删除]</a>';
+		$append2=' <a href="index.php">[链接到评论]</a>';
+		if($comment['file']>0) $append2=' <a href="file.php?id=' . $comment['file'] . '">[链接到评论]</a>';
 		commentbox($comment, $append . $append2);
 	}
 //Pages

@@ -58,8 +58,8 @@ function membercolors($group){
 function memberlink($username, $group, $to_append = true){
 	$append = '';
 	if($to_append){
-		if($group==1) $append = '<strong>[Banned]</strong><br>';
-		else if($group==2) $append = '<strong>[Staff]</strong><br>';
+		if($group==1) $append = '<strong>[被封禁用户]</strong><br>';
+		else if($group==2) $append = '<strong>[管理员]</strong><br>';
 	}
 	return "<a href=\"browse.php?author=" . $username . "\" class=\"" . membercolors($group) . "\">" . $append . $username . "</a>";
 }

@@ -47,7 +47,7 @@ if($user_type!=-1&&!empty($_POST["comment"])){
 		exit(0);
 	}
 	
-	successbox('您的评论已发布，请稍候。');
+	successbox('评论已发布，请稍候。');
 	header("Location:file.php?id=" . $file_get['id']);
 	include 'footer.php';
 	exit(0);
@@ -111,7 +111,7 @@ if(!empty($_GET["action"])){
 					SET likes = likes-1
 					WHERE id = ?");
 				$stmt->execute(array($file_get['id']));
-				successbox('您取消喜欢了此文件，请稍候。');
+				successbox('已取消喜欢此文件，请稍候。');
 			}
 			else{
 				$stmt = $db->prepare("
@@ -123,7 +123,7 @@ if(!empty($_GET["action"])){
 					SET likes = likes+1
 					WHERE id = ?");
 				$stmt->execute(array($file_get['id']));
-				successbox('您成功喜欢了此文件，请稍候。');
+				successbox('已成功喜欢此文件，请稍候。');
 			}
 			$db->commit();
 			header("Location:file.php?id=" . $file_get['id']);
@@ -287,7 +287,7 @@ foreach($result as $tag){
 	//Comments
 	foreach($comments as $comment){
 		$append='';
-		if($user_type==2) $append=' <span class="green-text">[' . $comment[4] . ']</span> <a href="file.php?id=' . $file_get['id'] . '&deletecomment=' . $comment[0] . '" class="red-text">[Delete]</a>';
+		if($user_type==2) $append=' <span class="green-text">[' . $comment[4] . ']</span> <a href="file.php?id=' . $file_get['id'] . '&deletecomment=' . $comment[0] . '" class="red-text">[删除]</a>';
 		commentbox($comment, $append);
 	}
 //Pages

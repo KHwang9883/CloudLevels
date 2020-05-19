@@ -38,7 +38,7 @@ try{
 	if(!empty($_GET["user"])){
 		
 		if($_GET["user"]==$user_name){
-			errorbox('您无法修改自己。');
+			errorbox('您无法取消自己的管理员。');
 		}
 		
 		else{
@@ -132,7 +132,7 @@ catch(PDOException $ex){
 							<option value="all">所有用户</option>
 							<option value="member"<?php if(!empty($_GET["group"])&&$_GET["group"]=='member') echo ' selected'; ?>>普通用户</option>
 							<option value="staff"<?php if(!empty($_GET["group"])&&$_GET["group"]=='staff') echo ' selected'; ?>>管理员</option>
-							<option value="banned"<?php if(!empty($_GET["group"])&&$_GET["group"]=='banned') echo ' selected'; ?>>被封禁的用户</option>
+							<option value="banned"<?php if(!empty($_GET["group"])&&$_GET["group"]=='banned') echo ' selected'; ?>>被封禁用户</option>
 						</select>
 						<label for="group">用户组</label>
 					</div>
@@ -156,7 +156,7 @@ catch(PDOException $ex){
 			<div class="row card hoverable">
 				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">用户管理</span>
 				<div class="row">
-					<p class="center col s12"><strong><span class="blue-text">普通用户</span> | <span class="green-text">管理员</span> | <span class="red-text">被封禁的用户</span></strong></p>
+					<p class="center col s12"><strong><span class="blue-text">普通用户</span> | <span class="green-text">管理员</span> | <span class="red-text">被封禁用户</span></strong></p>
 					<table class="col s10 offset-s1 centered striped">
 						<thead>
 							<tr>
@@ -169,12 +169,12 @@ catch(PDOException $ex){
 						</thead>
 						<tbody><?php
 foreach($result as $user){
-	$append="<a href=\"members.php?update=1&user=" . $user['username'] . "\" class=\"red-text\">[Ban]</a> <a href=\"members.php?update=2&user=" . $user['username'] . "\" class=\"green-text\">[Promote]</a>";
+	$append="<a href=\"members.php?update=1&user=" . $user['username'] . "\" class=\"red-text\">[封禁]</a> <a href=\"members.php?update=2&user=" . $user['username'] . "\" class=\"green-text\">[设置为管理员]</a>";
 	if($user['usergroup']==1){
-		$append="<a href=\"members.php?update=0&user=" . $user['username'] . "\" class=\"blue-text\">[Unban]</a>";
+		$append="<a href=\"members.php?update=0&user=" . $user['username'] . "\" class=\"blue-text\">[解封]</a>";
 	}
 	else if($user['usergroup']==2){
-		$append="<a href=\"members.php?update=0&user=" . $user['username'] . "\" class=\"blue-text\">[Demote]</a>";
+		$append="<a href=\"members.php?update=0&user=" . $user['username'] . "\" class=\"blue-text\">[取消管理员]</a>";
 	}
 	echo "
 							<tr>

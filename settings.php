@@ -62,7 +62,7 @@ if(!empty($_POST["password_old"])){
 					WHERE username = ?");
 				$stmt->execute(array(crypt($_POST["password_new"]), $user_name));
 				
-				successbox('您的密码已修改。');
+				successbox('密码已修改。');
 			}
 			else{
 				errorbox('密码错误');
