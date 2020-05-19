@@ -38,7 +38,7 @@ try{
 	if(!empty($_GET["user"])){
 		
 		if($_GET["user"]==$user_name){
-			errorbox('您无法取消自己的管理员。');
+			errorbox('无法取消自己的管理员。');
 		}
 		
 		else{
