@@ -144,7 +144,7 @@ catch(PDOException $ex){
 						全部
 						<input type="checkbox" name="featured"<?php if(!empty($_GET["featured"])) echo ' checked'; ?>>
 						<span class="lever"></span>
-						精选
+						星标
 						</label>
 					</div>
 <?php if($user_type==0||$user_type==2){ ?>
@@ -153,7 +153,7 @@ catch(PDOException $ex){
 						全部
 						<input type="checkbox" name="liked"<?php if(!empty($_GET["liked"])) echo ' checked'; ?>>
 						<span class="lever"></span>
-						喜欢
+						赞
 						</label>
 					</div>
 <?php } ?>

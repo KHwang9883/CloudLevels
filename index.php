@@ -140,7 +140,7 @@ catch(PDOException $ex){
 		</div>
 		<div class="container">
 			<div class="card hoverable row">
-				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">精选</span>
+				<span class="col s12 card-title <?php echo $theme ?> white-text center" style="font-size: 200%;">星标</span>
 				<div class="card-content"><br><br>
 <?php
 if(!empty($result1)){

@@ -88,7 +88,7 @@ if($user_type!=-1){
 	}
 	//Handle errors
 	catch(PDOException $ex){
-		errorbox('无法检查用户是否喜欢此文件。');
+		errorbox('无法检查用户是否点赞该文件。');
 		include 'footer.php';
 		exit(0);
 	}
@@ -111,7 +111,7 @@ if(!empty($_GET["action"])){
 					SET likes = likes-1
 					WHERE id = ?");
 				$stmt->execute(array($file_get['id']));
-				successbox('已取消喜欢此文件，请稍候。');
+				successbox('已取消点赞该文件，请稍候。');
 			}
 			else{
 				$stmt = $db->prepare("
@@ -123,7 +123,7 @@ if(!empty($_GET["action"])){
 					SET likes = likes+1
 					WHERE id = ?");
 				$stmt->execute(array($file_get['id']));
-				successbox('已成功喜欢此文件，请稍候。');
+				successbox('已成功点赞该文件，请稍候。');
 			}
 			$db->commit();
 			header("Location:file.php?id=" . $file_get['id']);
@@ -174,7 +174,7 @@ if(!empty($_GET["action"])){
 						SET featured = 0
 						WHERE id = ?");
 					$stmt->execute(array($file_get['id']));
-					successbox('文件不再被精选，请稍候。');
+					successbox('文件已被取消星标，请稍候。');
 				}
 				else{
 					$stmt = $db->prepare("
@@ -182,7 +182,7 @@ if(!empty($_GET["action"])){
 						SET featured = 1
 						WHERE id = ?");
 					$stmt->execute(array($file_get['id']));
-					successbox('文件已被精选，请稍候。');
+					successbox('文件已被标记为星标，请稍候。');
 				}
 				header("Location:file.php?id=" . $file_get['id']);
 				include 'footer.php';

@@ -242,7 +242,7 @@ $page_title.=$site_name;
 			<li><a href="comments.php">管理评论</a></li>
 			<li class="divider"></li>
 <?php } ?>
-			<li><a href="browse.php?author=<?php echo $user_name ?>">已上传</a></li>
+			<li><a href="browse.php?author=<?php echo $user_name ?>">您的文件</a></li>
 			<li><a href="settings.php">设置</a></li>
 			<li class="divider"></li>
 			<li><a href="logout.php">退出登录</a></li>
@@ -258,7 +258,7 @@ if($db_error){
 
 //Banned
 if($user_type==1){
-	errorbox('你已被封禁。');
+	errorbox('您已被封禁。');
 	include 'footer.php';
 	exit(0);
 }

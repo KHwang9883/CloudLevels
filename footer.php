@@ -22,7 +22,7 @@
 ?>
 		<br>
 		<div class="footer-copyright center">
-			Powered by <a class="black-text" href="https://github.com/A-Aquino/CloudLevels"><i class="fa fa-cloud" aria-hidden="true"></i> CloudLevels</a>
+			本网站由 <a class="black-text" href="https://github.com/A-Aquino/CloudLevels"><i class="fa fa-cloud" aria-hidden="true"></i> CloudLevels</a> 驱动
 		</div>
 		<br>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

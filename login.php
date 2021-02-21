@@ -45,7 +45,7 @@ if(!empty($_POST["username"])){
 		
 		//Compare password hash
 		if(crypt($_POST["password"], $passhash)==$passhash){
-			successbox('正在登录，请稍候。');
+			successbox('登录成功，请稍候。');
 			
 			//Session set
 			$_SESSION['uid']=$result[0]['id'];
@@ -55,7 +55,7 @@ if(!empty($_POST["username"])){
 			
 		}
 		else{
-			errorbox('无效的登录信息。');
+			errorbox('登录信息无效。');
 		}
 		
 	}
