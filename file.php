@@ -33,11 +33,11 @@ if($file_get==NULL){
 if($user_type!=-1&&!empty($_POST["comment"])){
 	
 	try{
-		date_default_timezone_set('America/New_York');
+		date_default_timezone_set('Asia/Shanghai');
 		$stmt = $db->prepare("
 			INSERT INTO cl_comment(author, file, date, ip, comment)
 			VALUES(?,?,?,?,?)");
-		$stmt->execute(array($_SESSION['uid'], $file_get['id'], date("F j, Y"), $_SERVER['REMOTE_ADDR'], nl2br(htmlspecialchars($_POST["comment"]))));
+		$stmt->execute(array($_SESSION['uid'], $file_get['id'], date("Y-m-d"), $_SERVER['REMOTE_ADDR'], nl2br(htmlspecialchars($_POST["comment"]))));
 	}
 	
 	//Handle errors

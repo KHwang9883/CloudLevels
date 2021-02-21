@@ -82,11 +82,11 @@ if(!empty($_POST["username"])){
 				}
 				else{
 					
-					date_default_timezone_set('America/New_York');
+					date_default_timezone_set('Asia/Shanghai');
 					$stmt = $db->prepare("
 						INSERT INTO cl_user(username, password, date, ip)
 						VALUES(?,?,?,?)");
-					$stmt->execute(array(htmlspecialchars($_POST["username"]), crypt($_POST["password"]), date("F j, Y"), $_SERVER['REMOTE_ADDR']));
+					$stmt->execute(array(htmlspecialchars($_POST["username"]), crypt($_POST["password"]), date("Y-m-d"), $_SERVER['REMOTE_ADDR']));
 					successbox('帐户已创建。请登录。');
 					
 				}

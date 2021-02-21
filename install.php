@@ -127,11 +127,11 @@ if(!empty($_POST["username"])){
 		)');
 		
 		//Create first admin user
-		date_default_timezone_set('America/New_York');
+		date_default_timezone_set('Asia/Shanghai');
 		$stmt = $db->prepare("
 			INSERT INTO cl_user(usergroup, username, password, date, ip)
 			VALUES(2,?,?,?,?)");
-		$stmt->execute(array($_POST["username"], crypt($_POST["password"]), date("F j, Y"), $_SERVER['REMOTE_ADDR']));
+		$stmt->execute(array($_POST["username"], crypt($_POST["password"]), date("Y-m-d"), $_SERVER['REMOTE_ADDR']));
 		
 		//End
 		$db->commit();

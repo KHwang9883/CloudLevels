@@ -153,7 +153,7 @@ catch(PDOException $ex){
 						全部
 						<input type="checkbox" name="liked"<?php if(!empty($_GET["liked"])) echo ' checked'; ?>>
 						<span class="lever"></span>
-						赞
+						已赞
 						</label>
 					</div>
 <?php } ?>

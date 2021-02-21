@@ -79,11 +79,11 @@ if(!empty($_POST["title"])){
 		$db->beginTransaction();
 		
 		//File table entry
-		date_default_timezone_set('America/New_York');
+		date_default_timezone_set('Asia/Shanghai');
 		$stmt = $db->prepare("
 			INSERT INTO cl_file(name, author, date, ip, description)
 			VALUES(?,?,?,?,?)");
-		$stmt->execute(array(htmlspecialchars($_POST["title"]), $_SESSION['uid'], date("F j, Y"), $_SERVER['REMOTE_ADDR'], nl2br(htmlspecialchars($_POST["description"]))));
+		$stmt->execute(array(htmlspecialchars($_POST["title"]), $_SESSION['uid'], date("Y-m-d"), $_SERVER['REMOTE_ADDR'], nl2br(htmlspecialchars($_POST["description"]))));
 		
 		//Get file id
 		$last_id = $db->lastInsertId();
