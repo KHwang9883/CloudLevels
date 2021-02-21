@@ -9,9 +9,9 @@
 5. 管理员设置用户可以使用的标签。
 
 ### 安装
-1. 将所有 .php 文件上传到支持 PHP 和 MySQL 的服务器。
+1. 将所有 `.php` 文件上传到支持 PHP 和 MySQL 的服务器。
 2. 运行安装程序。
-3. 删除 **install.php**。
+3. 删除 `install.php`。
 
 ### 许可
 **CloudLevels** is licensed under the **GNU General Public License v3**
